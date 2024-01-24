@@ -253,8 +253,7 @@ async function serverData ({
 
   MudiExperience({
     tokenApi:'5QTFyHtaEUeLFXWuEzt8',
-    //skuNumber:document.querySelector('.vtex-product-identifier-0-x-product-identifier__value').innerHTML,
-    skuNumber:'pruebaMexico',
+    skuNumber:document.querySelector('.vtex-product-identifier-0-x-product-identifier__value').innerHTML,
     idCompanyMudi:398,
     color:'#c41230',
     containerBtns:document.querySelector('.vtex-store-components-3-x-productImagesGallerySwiperContainer'),
