@@ -230,7 +230,7 @@ async function serverData ({
 
 let urlActual = null
 function reviewURL(
-    if(!urlActual) urlActual = window.location.href;
+    if(!urlActual) {urlActual = window.location.href};
     if( urlActual !== window.location.href ){
         urlActual = window.location.href;
          MudiExperience({
