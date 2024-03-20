@@ -227,6 +227,24 @@ async function serverData ({
     },false);
 
   };
+
+let urlActual = null
+function reviewURL(
+    if(!urlActual) urlActual = window.location.href;
+    if( urlActual !== window.location.href ){
+        urlActual = window.location.href;
+         MudiExperience({
+                tokenApi:'5QTFyHtaEUeLFXWuEzt8',
+                skuNumber:document.querySelector('.vtex-product-identifier-0-x-product-identifier__value').innerHTML+"_MEX",
+                idCompanyMudi:398,
+                color:'#c41230',
+                containerBtns:document.querySelector('.vtex-store-components-3-x-productImagesGallerySwiperContainer'),
+                zIndexModal:1000000,
+        });
+    };
+
+    requestAnimationFrame(reviewURL);
+);
   
 let counterMudi = 0;
   // Función Main Mudi --
@@ -246,7 +264,7 @@ let counterMudi = 0;
     let flag = false 
     const server = await serverData( {token:tokenApi, sku:skuNumber} );
     if(server==undefined){ 
-        document.body.querySelctor('.ContainerBtnsMudi').remove();
+        document.body.querySelctor('.ContainerBtnsMudi') && document.body.querySelctor('.ContainerBtnsMudi').remove();
         console.warn(`El producto identificado con el SKU: "%c${skuNumber}%c" en Mudi 3D&AR Commerce, no tiene 3D ni AR`, 'color: red; font-weight: bold', 'color: black;'); 
         return 
     };
@@ -256,6 +274,7 @@ let counterMudi = 0;
         createStyles({idCompany:idCompanyMudi});
         createBtns({ father:containerBtns, sku:skuNumber, idCompany:idCompanyMudi, link3D:server.URL_WEB ,color:color, zBtns:zIndexBtns,zModal:zIndexModal, ButtonsY:positionBtnsY});
         sendDataLayer({sku:skuNumber})
+        reviewURL();
         counterMudi++;      
     }
     
