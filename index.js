@@ -228,6 +228,7 @@ async function serverData ({
 
   };
   
+let counterMudi = 0;
   // Función Main Mudi --
   async function MudiExperience ({
     tokenApi,
@@ -245,14 +246,15 @@ async function serverData ({
     const server = await serverData( {token:tokenApi, sku:skuNumber} );
     if(server==undefined){ console.warn(`El producto identificado con el SKU: "%c${skuNumber}%c" en Mudi 3D&AR Commerce, no tiene 3D ni AR`, 'color: red; font-weight: bold', 'color: black;'); return };
   
+    if(counterMudi !== 0){ return }
     /** Una vez tengamos la respuesta positiva creamos los estilos generales y los botones */
     createStyles({idCompany:idCompanyMudi});
     createBtns({ father:containerBtns, sku:skuNumber, idCompany:idCompanyMudi, link3D:server.URL_WEB ,color:color, zBtns:zIndexBtns,zModal:zIndexModal, ButtonsY:positionBtnsY});
     sendDataLayer({sku:skuNumber})
+    counterMudi++;
   };
 
 setTimeout(()=>{
-    if(document.body.querySelector('.ContainerBtnsMudi')) return;
 
       MudiExperience({
         tokenApi:'5QTFyHtaEUeLFXWuEzt8',
