@@ -243,15 +243,18 @@ let counterMudi = 0;
     positionBtnsY='bottom',
   }) {
   
+    let flag = false 
     const server = await serverData( {token:tokenApi, sku:skuNumber} );
     if(server==undefined){ console.warn(`El producto identificado con el SKU: "%c${skuNumber}%c" en Mudi 3D&AR Commerce, no tiene 3D ni AR`, 'color: red; font-weight: bold', 'color: black;'); return };
-  
-    if(document.head.querySelector('.HelmetAr3d')){ console.log('Ejecución doble evitada'); return }
-    /** Una vez tengamos la respuesta positiva creamos los estilos generales y los botones */
-    createStyles({idCompany:idCompanyMudi});
-    createBtns({ father:containerBtns, sku:skuNumber, idCompany:idCompanyMudi, link3D:server.URL_WEB ,color:color, zBtns:zIndexBtns,zModal:zIndexModal, ButtonsY:positionBtnsY});
-    sendDataLayer({sku:skuNumber})
-    counterMudi++;
+    
+    if(counterMudi == 0){
+      /** Una vez tengamos la respuesta positiva creamos los estilos generales y los botones */
+        createStyles({idCompany:idCompanyMudi});
+        createBtns({ father:containerBtns, sku:skuNumber, idCompany:idCompanyMudi, link3D:server.URL_WEB ,color:color, zBtns:zIndexBtns,zModal:zIndexModal, ButtonsY:positionBtnsY});
+        sendDataLayer({sku:skuNumber})
+        counterMudi++;      
+    }
+    
   };
 
 setTimeout(()=>{
